@@ -29,14 +29,14 @@ This is an example of a simple hanging protocol that will be applied to all stud
     <hanging-protocols>
         <hanging-protocol residual-workspace-rows="2" residual-workspace-columns="2" >
             <study-filter>
-            <condition>
-                <contains test="$ModalitiesInStudy" pattern="CR" />
-            </condition>
+                <condition>
+                    <contains test="$ModalitiesInStudy" pattern="CR" />
+                </condition>
             </study-filter>
             <image-filter name="CR">
-            <condition>
-                <equal test="$Modality" refValue="CR" />
-            </condition>
+                <condition>
+                    <equal test="$Modality" refValue="CR" />
+                </condition>
             </image-filter>
             <workspace rows="1" columns="1">            
                 <image-box filter="CR" />
