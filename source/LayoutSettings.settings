@@ -1,0 +1,108 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Econmed.ImageViewer.Layout.HangingProtocols" GeneratedClassName="LayoutSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LayoutSettingsXml" Type="System.Xml.XmlDocument" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;hanging-protocols&gt;
+  &lt;hanging-protocol&gt;
+    &lt;study-filter&gt;
+      &lt;condition&gt;
+        &lt;contains test="$ModalitiesInStudy" pattern="MG" /&gt;
+      &lt;/condition&gt;
+    &lt;/study-filter&gt;
+    &lt;image-filter name="MG-Left-CC"&gt;
+      &lt;condition&gt;
+        &lt;and&gt;
+          &lt;equal test="$PresentationIntentType" refValue="FOR PRESENTATION" /&gt;
+          &lt;equal test="$Modality" refValue="MG" /&gt;
+          &lt;equal test="$ImageLaterality" refValue="L" /&gt;
+          &lt;or&gt;
+            &lt;equal test="$ViewPosition" refValue="CC" /&gt;
+            &lt;equal test="$PatientOrientation" refValue="P\L" /&gt;
+            &lt;equal test="$PatientOrientation" refValue="A\R" /&gt;
+          &lt;/or&gt;
+        &lt;/and&gt;
+      &lt;/condition&gt;
+    &lt;/image-filter&gt;
+    &lt;image-filter name="MG-Right-CC"&gt;
+      &lt;condition&gt;
+        &lt;and&gt;
+          &lt;equal test="$PresentationIntentType" refValue="FOR PRESENTATION" /&gt;
+          &lt;equal test="$Modality" refValue="MG" /&gt;
+          &lt;equal test="$ImageLaterality" refValue="R" /&gt;
+          &lt;or&gt;
+            &lt;equal test="$ViewPosition" refValue="CC" /&gt;
+            &lt;equal test="$PatientOrientation" refValue="P\L" /&gt;
+            &lt;equal test="$PatientOrientation" refValue="A\R" /&gt;
+          &lt;/or&gt;
+        &lt;/and&gt;
+      &lt;/condition&gt;
+    &lt;/image-filter&gt;
+    &lt;image-filter name="MG-Left-MLO"&gt;
+      &lt;condition&gt;
+        &lt;and&gt;
+          &lt;equal test="$PresentationIntentType" refValue="FOR PRESENTATION" /&gt;
+          &lt;equal test="$Modality" refValue="MG" /&gt;
+          &lt;equal test="$ImageLaterality" refValue="L" /&gt;
+          &lt;or&gt;
+            &lt;equal test="$ViewPosition" refValue="MLO" /&gt;
+            &lt;not&gt;
+              &lt;or&gt;
+                &lt;equal test="$PatientOrientation" refValue="P\L" /&gt;
+                &lt;equal test="$PatientOrientation" refValue="A\R" /&gt;
+              &lt;/or&gt;
+            &lt;/not&gt;
+          &lt;/or&gt;
+        &lt;/and&gt;
+      &lt;/condition&gt;
+    &lt;/image-filter&gt;
+    &lt;image-filter name="MG-Right-MLO"&gt;
+      &lt;condition&gt;
+        &lt;and&gt;
+          &lt;equal test="$PresentationIntentType" refValue="FOR PRESENTATION" /&gt;
+          &lt;equal test="$Modality" refValue="MG" /&gt;
+          &lt;equal test="$ImageLaterality" refValue="R" /&gt;
+          &lt;or&gt;
+            &lt;equal test="$ViewPosition" refValue="MLO" /&gt;
+            &lt;not&gt;
+              &lt;or&gt;
+                &lt;equal test="$PatientOrientation" refValue="P\L" /&gt;
+                &lt;equal test="$PatientOrientation" refValue="A\R" /&gt;
+              &lt;/or&gt;
+            &lt;/not&gt;
+          &lt;/or&gt;
+        &lt;/and&gt;
+      &lt;/condition&gt;
+    &lt;/image-filter&gt;
+    &lt;workspace rows="2" columns="2"&gt;
+      &lt;image-box filter="MG-Right-CC" /&gt;
+      &lt;image-box filter="MG-Left-CC" /&gt;
+      &lt;image-box filter="MG-Right-MLO" /&gt;
+      &lt;image-box filter="MG-Left-MLO" /&gt;
+    &lt;/workspace&gt;
+    &lt;workspace rows="1" columns="2"&gt;
+      &lt;image-box filter="MG-Right-CC" /&gt;
+      &lt;image-box filter="MG-Left-CC" /&gt;
+    &lt;/workspace&gt;
+    &lt;workspace rows="1" columns="2"&gt;
+      &lt;image-box filter="MG-Right-MLO" /&gt;
+      &lt;image-box filter="MG-Left-MLO" /&gt;
+    &lt;/workspace&gt;
+    &lt;workspace rows="2" columns="2"&gt;
+      &lt;image-box filter="MG-Right-CC" prior-study="true" /&gt;
+      &lt;image-box filter="MG-Left-CC" prior-study="true" /&gt;
+      &lt;image-box filter="MG-Right-CC" /&gt;
+      &lt;image-box filter="MG-Left-CC" /&gt;
+    &lt;/workspace&gt;
+    &lt;workspace rows="2" columns="2"&gt;
+      &lt;image-box filter="MG-Right-MLO" prior-study="true" /&gt;
+      &lt;image-box filter="MG-Left-MLO" prior-study="true" /&gt;
+      &lt;image-box filter="MG-Right-MLO" /&gt;
+      &lt;image-box filter="MG-Left-MLO" /&gt;
+    &lt;/workspace&gt;
+  &lt;/hanging-protocol&gt;
+&lt;/hanging-protocols&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
