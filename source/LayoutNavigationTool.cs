@@ -69,6 +69,11 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
             UpdateEnabled();
         }
 
+        private void OnLayoutCompleted(object sender, EventArgs e)
+        {
+            UpdateEnabled();
+        }
+
         private void UpdateEnabled()
         {
             var hook = GetLayoutHook();
@@ -84,13 +89,15 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
         public override void Initialize()
         {
             base.Initialize();
-            UpdateEnabled();
+            NextEnabled = PreviousEnabled = false;
             base.Context.Viewer.EventBroker.StudyLoaded += OnStudyLoaded;
+            base.Context.Viewer.EventBroker.LayoutCompleted += OnLayoutCompleted;
         }
 
         protected override void Dispose(bool disposing)
         {
             base.Context.Viewer.EventBroker.StudyLoaded -= OnStudyLoaded;
+            base.Context.Viewer.EventBroker.LayoutCompleted -= OnLayoutCompleted;
             base.Dispose(disposing);
         }
 
