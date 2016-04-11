@@ -166,7 +166,8 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
             var imageSets = GetImageSets(logicalWorkspace, hangingProtocol);
             var primaryImageSet = imageSets.First();
             var residualDisplaySets = primaryImageSet.DisplaySets.ToList();
-            var priorImageSets = imageSets.Count() == 1 ? new List<IImageSet>() { null } : imageSets.Skip(1);
+            var studyHasPriors = imageSets.Count() > 1;
+            var priorImageSets = studyHasPriors ? imageSets.Skip(1) : new List<IImageSet>() { null };
 
             foreach (var iw in priorImageSets.Zip(
                 OneWorkspacesWithAndTheRestWithoutPrimary(hangingProtocol.Workspaces), (i, w) => new { Workspaces = w, priorImageSet = i }))
@@ -179,6 +180,11 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
                     }
                     var appliedWorkspace = new AppliedWorkspace() { WorkspaceLayout = workspace };
                     bool atLeastOneMatchingDisplaySet = false;
+                    if (!studyHasPriors && workspace.ImageBoxes.Any(i => i.PriorStudy))
+                    {
+                        continue;
+                    }
+
                     foreach (var imageBox in workspace.ImageBoxes)
                     {
                         var imageSet = imageBox.PriorStudy ? iw.priorImageSet : primaryImageSet;
