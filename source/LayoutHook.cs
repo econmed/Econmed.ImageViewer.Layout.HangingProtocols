@@ -68,7 +68,7 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
         {
             if (layout.DisplaySets.Count != layout.WorkspaceLayout.Rows * layout.WorkspaceLayout.Columns)
             {
-                throw new ArgumentException(string.Format(SR.MessageAmountOfImageBoxesMismatch, layout.DisplaySets.Count, layout.WorkspaceLayout.Rows, layout.WorkspaceLayout.Columns));
+                throw new ArgumentException(string.Format(SR.MessageAmountOfImageBoxesMismatch, layout.DisplaySets.Count, layout.WorkspaceLayout.Rows, layout.WorkspaceLayout.Columns, layout.WorkspaceLayout.Name));
             }
             IPhysicalWorkspace workspace = viewer.PhysicalWorkspace;
             workspace.SetImageBoxGrid(layout.WorkspaceLayout.Rows, layout.WorkspaceLayout.Columns);
