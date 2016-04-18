@@ -28,11 +28,15 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
 
         public bool UpdateLayouts(IImageViewer viewer)
         {
-            if (!layoutProvider.CanHandle(viewer.StudyTree.Studies.First())) { return false; }
-            layouts = new List<AppliedWorkspace>(layoutProvider.MakeLayouts(viewer.LogicalWorkspace));
-            if (layouts.Count == 0) { return false; }
-            ApplyLayout(viewer, layouts.ElementAt(0));
-            return true;
+            foreach (var layoutProvider in layoutProviders)
+            {
+                if (!layoutProvider.CanHandle(viewer.StudyTree.Studies.First())) { continue; }
+                layouts = new List<AppliedWorkspace>(layoutProvider.MakeLayouts(viewer.LogicalWorkspace));
+                if (layouts.Count == 0) { continue; }
+                ApplyLayout(viewer, layouts.ElementAt(0));
+                return true;
+            }
+            return false;
         }
 
         public bool NextLayoutAvailable { get { return null != layouts && currentLayoutIndex < layouts.Count - 1; } }
