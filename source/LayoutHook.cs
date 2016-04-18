@@ -19,7 +19,7 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
     {
         int currentLayoutIndex = 0;
         List<AppliedWorkspace> layouts;
-        ILayoutProvider layoutProvider = new HangingProtocolLayoutProvider();
+        List<ILayoutProvider> layoutProviders = new List<ILayoutProvider>() { new HangingProtocolLayoutProvider(), new SimpleLayoutProvider() };
 
         public bool HandleLayout(IHpLayoutHookContext context)
         {
