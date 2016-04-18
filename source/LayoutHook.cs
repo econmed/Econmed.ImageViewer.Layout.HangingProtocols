@@ -88,6 +88,10 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
                 {
                     imageBox.DisplaySet = displaySetLayout.Item2.CreateFreshCopy();
                 }
+                else
+                {
+                    imageBox.DisplaySet = null;
+                }
                 imageBoxIndex++;
             }
         }
