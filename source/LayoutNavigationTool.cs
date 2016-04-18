@@ -53,7 +53,7 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
             }
         }
 
-        private void OnStudyLoaded(object sender, StudyLoadedEventArgs e)
+        private void OnImageSetAdded(object sender, ListEventArgs<IImageSet> e)
         {
             Undoable("PreviousLayout", () =>
             {
@@ -66,11 +66,6 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
                 Context.Viewer.PhysicalWorkspace.SelectDefaultImageBox();
                 return true;
             });
-            UpdateEnabled();
-        }
-
-        private void OnLayoutCompleted(object sender, EventArgs e)
-        {
             UpdateEnabled();
         }
 
@@ -90,14 +85,12 @@ namespace Econmed.ImageViewer.Layout.HangingProtocols
         {
             base.Initialize();
             NextEnabled = PreviousEnabled = false;
-            base.Context.Viewer.EventBroker.StudyLoaded += OnStudyLoaded;
-            base.Context.Viewer.EventBroker.LayoutCompleted += OnLayoutCompleted;
+            base.Context.Viewer.LogicalWorkspace.ImageSets.ItemAdded += OnImageSetAdded;
         }
 
         protected override void Dispose(bool disposing)
         {
-            base.Context.Viewer.EventBroker.StudyLoaded -= OnStudyLoaded;
-            base.Context.Viewer.EventBroker.LayoutCompleted -= OnLayoutCompleted;
+            base.Context.Viewer.LogicalWorkspace.ImageSets.ItemAdded -= OnImageSetAdded;
             base.Dispose(disposing);
         }
 
